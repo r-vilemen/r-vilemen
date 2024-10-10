@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Check out the repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Get current hour in Brasília timezone
       run: echo "HOUR=$(TZ='America/Sao_Paulo' date +%H)" >> $GITHUB_ENV
