@@ -18,8 +18,18 @@ jobs:
 
       - name: Update README
         run: |
-          sed -i '/<!-- start-greeting -->/,/<!-- end-greeting -->/{/<!-- start-greeting -->/{p; r greeting.txt
-            }; /<!-- end-greeting -->/p; d}' README.md
+          # Substitui o conteúdo entre os marcadores de saudação
+          sed -i.bak '/<!-- start-greeting -->/,/<!-- end-greeting -->/ {
+            /<!-- start-greeting -->/! {
+              /<!-- end-greeting -->/!d
+            }
+            /<!-- start-greeting -->/ {
+              r greeting.txt
+              d
+            }
+          }' README.md
+          # Remove o backup
+          rm README.md.bak
 
       - name: Commit changes
         run: |
