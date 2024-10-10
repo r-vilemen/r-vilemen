@@ -11,30 +11,27 @@ jobs:
 
     steps:
     - name: Check out the repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Get current hour in Brasília timezone
-      run: echo "HOUR=$(TZ='America/Sao_Paulo' date +%H)" >> $GITHUB_ENV
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-    - name: Generate greeting based on time
+    - name: Install dependencies
+      run: npm install
+
+    - name: Generate greeting
       id: generate_greeting
       run: |
-        if [ "$HOUR" -ge 6 ] && [ "$HOUR" -lt 12 ]; then
-          GREETING="Bom dia"
-        elif [ "$HOUR" -ge 12 ] && [ "$HOUR" -lt 18 ]; then
-          GREETING="Boa tarde"
-        elif [ "$HOUR" -ge 18 ] && [ "$HOUR" -lt 24 ]; then
-          GREETING="Boa noite"
-        else
-          GREETING="Boa madrugada"
-        fi
-
+        # Execute o script JavaScript para obter a saudação
+        GREETING=$(node greeting.js)
         echo "GREETING=$GREETING" >> $GITHUB_ENV
 
-    - name: Update README
+    - name: Update README with new greeting
       run: |
-        # Remove the old greeting and add the new one
-        sed -i -E "s/(<!-- GREETING -->\n)[^\n]*(\n)/\1$GREETING\2/" README.md || echo -e "\n<!-- GREETING -->\n$GREETING" >> README.md
+        # Substitua a saudação antiga pela nova no README.md
+        sed -i -E "s/(<!-- GREETING -->\n)[^\n]*(\n)/\1${{ env.GREETING }}\2/" README.md || echo -e "\n<!-- GREETING -->\n${{ env.GREETING }}" >> README.md
 
     - name: Commit changes
       run: |
