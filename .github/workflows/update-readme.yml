@@ -31,9 +31,8 @@ jobs:
           GREETING="Boa madrugada"
         fi
 
-        echo "$GREETING, visitante!" > README.md
-        echo "" >> README.md
-        echo "Este README é atualizado automaticamente de acordo com o horário." >> README.md
+        # Substitui apenas a saudação no README.md
+        sed -i "s|<!-- GREETING -->|$GREETING, visitante!|" README.md
 
     - name: Commit changes
       run: |
