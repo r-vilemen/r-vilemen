@@ -2,7 +2,7 @@ name: Update README with greeting
 
 on:
   schedule:
-    - cron: '0 6,12,18,23 * * *' # Executa às 06:00, 12:00, 18:00 e 23:00 todos os dias
+    - cron: '0 6,12,18,23 * * *'  # Executa às 06:00, 12:00, 18:00 e 23:00 todos os dias
   workflow_dispatch:
 
 jobs:
@@ -17,11 +17,12 @@ jobs:
       run: echo "HOUR=$(TZ='America/Sao_Paulo' date +%H)" >> $GITHUB_ENV
 
     - name: Generate greeting based on time
+      id: generate_greeting
       run: |
         if [ "$HOUR" -ge 6 ] && [ "$HOUR" -lt 12 ]; then
           GREETING="Bom dia"
         elif [ "$HOUR" -ge 12 ] && [ "$HOUR" -lt 18 ]; then
-          GREETING="Boa test"
+          GREETING="Boa tarde"
         elif [ "$HOUR" -ge 18 ] && [ "$HOUR" -lt 24 ]; then
           GREETING="Boa noite"
         else
@@ -32,12 +33,13 @@ jobs:
 
     - name: Update README
       run: |
-        sed -i "s|{{GREETING_PLACEHOLDER}}|$GREETING|g" README.md
+        # Append the greeting to the README after the <!-- GREETING --> comment
+        sed -i "/<!-- GREETING -->/a $GREETING" README.md
 
     - name: Commit changes
       run: |
         git config --local user.email "rodrigo.vilemen@hotmail.com"
         git config --local user.name "r-vilemen"
         git add README.md
-        git commit -m "update: greeting"
+        git commit -m "update: add greeting"
         git push
