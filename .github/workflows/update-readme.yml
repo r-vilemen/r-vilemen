@@ -1,0 +1,44 @@
+name: Update README with greeting
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Get current hour
+      run: echo "::set-output name=hour::$(date +%H)"
+      id: time
+
+    - name: Generate greeting based on time
+      run: |
+        HOUR=${{ steps.time.outputs.hour }}
+
+        if [ $HOUR -ge 6 ] && [ $HOUR -lt 12 ]; then
+          GREETING="Bom dia"
+        elif [ $HOUR -ge 12 ] && [ $HOUR -lt 18 ]; then
+          GREETING="Boa tarde"
+        elif [ $HOUR -ge 18 ] && [ $HOUR -lt 24 ]; then
+          GREETING="Boa noite"
+        else
+          GREETING="Boa madrugada"
+        fi
+
+        echo "$GREETING, visitante!" > README.md
+        echo "" >> README.md
+        echo "Este README é atualizado automaticamente de acordo com o horário." >> README.md
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md
+        git commit -m "Atualiza saudação no README"
+        git push
