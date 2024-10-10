@@ -21,7 +21,7 @@ jobs:
         if [ "$HOUR" -ge 6 ] && [ "$HOUR" -lt 12 ]; then
           GREETING="Bom dia"
         elif [ "$HOUR" -ge 12 ] && [ "$HOUR" -lt 18 ]; then
-          GREETING="teste"
+          GREETING="Boa tarde"
         elif [ "$HOUR" -ge 18 ] && [ "$HOUR" -lt 24 ]; then
           GREETING="Boa noite"
         else
@@ -32,7 +32,7 @@ jobs:
 
     - name: Update README
       run: |
-        sed -i "s|{{GREETING}}|$GREETING|g" README.md
+        sed -i "s|{{GREETING_PLACEHOLDER}}|$GREETING|g" README.md
 
     - name: Commit changes
       run: |
