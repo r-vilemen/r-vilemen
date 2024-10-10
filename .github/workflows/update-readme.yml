@@ -22,8 +22,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "rodrigo.vilemen@hotmail.com"
+          git config --local user.name "r-vilemen"
           git add README.md
-          git commit -m "Atualiza saudação no README"
+          git commit -m "update: greeting"
           git push
