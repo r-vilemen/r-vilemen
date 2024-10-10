@@ -22,7 +22,7 @@ jobs:
         if [ "$HOUR" -ge 6 ] && [ "$HOUR" -lt 12 ]; then
           GREETING="Bom dia"
         elif [ "$HOUR" -ge 12 ] && [ "$HOUR" -lt 18 ]; then
-          GREETING="Boa tarde"
+          GREETING="Boa teste"
         elif [ "$HOUR" -ge 18 ] && [ "$HOUR" -lt 24 ]; then
           GREETING="Boa noite"
         else
