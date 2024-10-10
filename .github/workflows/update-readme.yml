@@ -14,12 +14,24 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
 
-    - name: Install dependencies
-      run: npm install
+    - name: Create greeting script
+      run: |
+        echo "const hour = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: 'numeric', hour12: false });" > greeting.js
+        echo "let greeting = '';" >> greeting.js
+        echo "if (hour >= 6 && hour < 12) {" >> greeting.js
+        echo "  greeting = 'Bom dia';" >> greeting.js
+        echo "} else if (hour >= 12 && hour < 18) {" >> greeting.js
+        echo "  greeting = 'Boa tarde';" >> greeting.js
+        echo "} else if (hour >= 18 && hour < 24) {" >> greeting.js
+        echo "  greeting = 'Boa noite';" >> greeting.js
+        echo "} else {" >> greeting.js
+        echo "  greeting = 'Boa madrugada';" >> greeting.js
+        echo "}" >> greeting.js
+        echo "console.log(greeting);" >> greeting.js
 
     - name: Generate greeting
       id: generate_greeting
