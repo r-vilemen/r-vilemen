@@ -21,6 +21,4 @@ Meu nome é Rodrigo Vilemen, sou desenvolvedor web **front-end** e estou trabalh
 - [Instagram](https://www.instagram.com/r.vilemen/)
 - [TikTok](https://www.tiktok.com/@rvacode)
 
-**Este README é atualizado automaticamente de acordo com o horário.**
-
 Até a próxima!
