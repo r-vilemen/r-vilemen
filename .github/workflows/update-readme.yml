@@ -1,9 +1,9 @@
-name: Update README with greeting
+name: Update README with greeting (BRT)
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
-  workflow_dispatch:
+    - cron: '*/5 * * * *'  # Executa a cada 30 minutos
+  workflow_dispatch:  # Permite execução manual
 
 jobs:
   update-readme:
@@ -13,14 +13,17 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v2
 
-    - name: Get current hour
+    - name: Get current hour in BRT (Brazil)
       id: time
-      run: echo "hour=$(date +%H)" >> $GITHUB_ENV
+      run: |
+        HOUR=$(date -u +"%H")  # Hora UTC
+        HOUR_BRT=$(( (HOUR + 21) % 24 ))  # Ajustando para BRT (-3 horas do UTC)
+        echo "hour_brt=$HOUR_BRT" >> $GITHUB_ENV
 
-    - name: Generate greeting based on time
+    - name: Generate greeting based on BRT time
       id: greeting
       run: |
-        HOUR=${{ env.hour }}
+        HOUR=${{ env.hour_brt }}
 
         if [ $HOUR -ge 6 ] && [ $HOUR -lt 12 ]; then
           echo "GREETING=Bom dia" >> $GITHUB_ENV
