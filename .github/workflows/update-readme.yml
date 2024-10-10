@@ -31,13 +31,10 @@ jobs:
           GREETING="Boa madrugada"
         fi
 
-        # Substitui apenas a saudação no README.md
-        sed -i "s|<!-- GREETING -->|$GREETING, visitante!|" README.md
-
     - name: Commit changes
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "rodrigo.vilemen@hotmail.com"
+        git config --local user.name "Rodrigo Vilemen"
         git add README.md
-        git commit -m "Atualiza saudação no README"
+        git commit -m "update: readme.md"
         git push
