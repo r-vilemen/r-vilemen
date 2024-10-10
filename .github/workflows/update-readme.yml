@@ -18,7 +18,8 @@ jobs:
 
       - name: Update README
         run: |
-          sed -i "/<!-- start-greeting -->/,/<!-- end-greeting -->/c\<!-- start-greeting -->\n$(cat greeting.txt)\n<!-- end-greeting -->" README.md
+          sed -i '/<!-- start-greeting -->/,/<!-- end-greeting -->/{/<!-- start-greeting -->/{p; r greeting.txt
+            }; /<!-- end-greeting -->/p; d}' README.md
 
       - name: Commit changes
         run: |
