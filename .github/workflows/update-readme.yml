@@ -42,7 +42,7 @@ jobs:
     - name: Commit changes
       run: |
         git config --local user.email "rodrigo.vilemen@hotmail.com"
-        git config --local user.name "Rodrigo Vilemen"
+        git config --local user.name "r-vilemen"
         git add README.md
         git commit -m "update: readme.md" || echo "No changes to commit"
         git push
