@@ -1,54 +1,29 @@
-name: Update README with greeting
+name: Update README
 
 on:
   schedule:
-    - cron: '0 6,12,18,23 * * *'  # Executa às 06:00, 12:00, 18:00 e 23:00 todos os dias
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Check out the repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
+      - name: Run greeting script
+        run: |
+          node generateGreeting.js > greeting.txt
 
-    - name: Create greeting script
-      run: |
-        echo "const hour = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: 'numeric', hour12: false });" > greeting.js
-        echo "let greeting = '';" >> greeting.js
-        echo "if (hour >= 6 && hour < 12) {" >> greeting.js
-        echo "  greeting = 'Bom dia';" >> greeting.js
-        echo "} else if (hour >= 12 && hour < 18) {" >> greeting.js
-        echo "  greeting = 'Boa tarde';" >> greeting.js
-        echo "} else if (hour >= 18 && hour < 24) {" >> greeting.js
-        echo "  greeting = 'Boa noite';" >> greeting.js
-        echo "} else {" >> greeting.js
-        echo "  greeting = 'Boa madrugada';" >> greeting.js
-        echo "}" >> greeting.js
-        echo "console.log(greeting);" >> greeting.js
+      - name: Update README
+        run: |
+          sed -i "/<!-- start-greeting -->/,/<!-- end-greeting -->/c\<!-- start-greeting -->\n$(cat greeting.txt)\n<!-- end-greeting -->" README.md
 
-    - name: Generate greeting
-      id: generate_greeting
-      run: |
-        # Execute o script JavaScript para obter a saudação
-        GREETING=$(node greeting.js)
-        echo "GREETING=$GREETING" >> $GITHUB_ENV
-
-    - name: Update README with new greeting
-      run: |
-        # Substitua a saudação antiga pela nova no README.md
-        sed -i -E "s/(<!-- GREETING -->\n)[^\n]*(\n)/\1${{ env.GREETING }}\2/" README.md || echo -e "\n<!-- GREETING -->\n${{ env.GREETING }}" >> README.md
-
-    - name: Commit changes
-      run: |
-        git config --local user.email "rodrigo.vilemen@hotmail.com"
-        git config --local user.name "r-vilemen"
-        git add README.md
-        git commit -m "update: replace greeting"
-        git push
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Atualiza saudação no README"
+          git push
