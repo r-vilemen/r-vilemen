@@ -22,7 +22,7 @@ jobs:
         if [ "$HOUR" -ge 6 ] && [ "$HOUR" -lt 12 ]; then
           GREETING="Bom dia"
         elif [ "$HOUR" -ge 12 ] && [ "$HOUR" -lt 18 ]; then
-          GREETING="Boa teste"
+          GREETING="Boa tarde"
         elif [ "$HOUR" -ge 18 ] && [ "$HOUR" -lt 24 ]; then
           GREETING="Boa noite"
         else
@@ -33,13 +33,13 @@ jobs:
 
     - name: Update README
       run: |
-        # Append the greeting to the README after the <!-- GREETING --> comment
-        sed -i "/<!-- GREETING -->/a $GREETING" README.md
+        # Remove the old greeting and add the new one
+        sed -i -E "s/(<!-- GREETING -->\n)[^\n]*(\n)/\1$GREETING\2/" README.md || echo -e "\n<!-- GREETING -->\n$GREETING" >> README.md
 
     - name: Commit changes
       run: |
         git config --local user.email "rodrigo.vilemen@hotmail.com"
         git config --local user.name "r-vilemen"
         git add README.md
-        git commit -m "update: add greeting"
+        git commit -m "update: replace greeting"
         git push
