@@ -11,33 +11,28 @@ jobs:
 
     steps:
     - name: Check out the repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Get current hour in Brasília timezone
-      run: echo "::set-output name=hour::$(TZ='America/Sao_Paulo' date +%H)"
-      id: time
+      run: echo "HOUR=$(TZ='America/Sao_Paulo' date +%H)" >> $GITHUB_ENV
 
     - name: Generate greeting based on time
       run: |
-        HOUR=${{ steps.time.outputs.hour }}
-
-        if [ $HOUR -ge 6 ] && [ $HOUR -lt 12 ]; then
+        if [ "$HOUR" -ge 6 ] && [ "$HOUR" -lt 12 ]; then
           GREETING="Bom dia"
-        elif [ $HOUR -ge 12 ] && [ $HOUR -lt 18 ]; then
+        elif [ "$HOUR" -ge 12 ] && [ "$HOUR" -lt 18 ]; then
           GREETING="Boa tarde"
-        elif [ $HOUR -ge 18 ] && [ $HOUR -lt 24 ]; then
+        elif [ "$HOUR" -ge 18 ] && [ "$HOUR" -lt 24 ]; then
           GREETING="Boa noite"
         else
           GREETING="Boa madrugada"
         fi
 
-        echo "::set-output name=greeting::$GREETING"
-      id: greeting
+        echo "GREETING=$GREETING" >> $GITHUB_ENV
 
     - name: Update README
       run: |
-        GREETING=${{ steps.greeting.outputs.greeting }}
-        sed -i "s|{{GREETING}}|$GREETING|" README.md
+        sed -i "s|{{GREETING}}|$GREETING|g" README.md
 
     - name: Commit changes
       run: |
