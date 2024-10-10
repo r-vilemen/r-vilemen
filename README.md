@@ -1,4 +1,4 @@
-# Olá visitante, Boa tarde! 👋
+# Olá visitante, {{GREETING}}! 👋
 
 Meu nome é Rodrigo Vilemen, sou desenvolvedor web **front-end** e estou trabalhando para me tornar **full-stack**. Aqui você encontra alguns dos meus projetos e contribuições.
 
