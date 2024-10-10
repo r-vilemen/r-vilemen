@@ -2,8 +2,8 @@ name: Update README with greeting
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
-  workflow_dispatch:
+    - cron: '*/30 * * * *'  # Executa a cada 30 minutos
+  workflow_dispatch:  # Permite execução manual
 
 jobs:
   update-readme:
@@ -14,27 +14,32 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Get current hour
-      run: echo "::set-output name=hour::$(date +%H)"
       id: time
+      run: echo "hour=$(date +%H)" >> $GITHUB_ENV
 
     - name: Generate greeting based on time
+      id: greeting
       run: |
-        HOUR=${{ steps.time.outputs.hour }}
+        HOUR=${{ env.hour }}
 
         if [ $HOUR -ge 6 ] && [ $HOUR -lt 12 ]; then
-          GREETING="Bom dia"
+          echo "GREETING=Bom dia, visitante!" >> $GITHUB_ENV
         elif [ $HOUR -ge 12 ] && [ $HOUR -lt 18 ]; then
-          GREETING="Boa tarde"
+          echo "GREETING=Boa tarde, visitante!" >> $GITHUB_ENV
         elif [ $HOUR -ge 18 ] && [ $HOUR -lt 24 ]; then
-          GREETING="Boa noite"
+          echo "GREETING=Boa noite, visitante!" >> $GITHUB_ENV
         else
-          GREETING="Boa madrugada"
+          echo "GREETING=Boa madrugada, visitante!" >> $GITHUB_ENV
         fi
+
+    - name: Update README.md
+      run: |
+        sed -i "s|<!-- GREETING -->|${{ env.GREETING }}|" README.md
 
     - name: Commit changes
       run: |
         git config --local user.email "rodrigo.vilemen@hotmail.com"
         git config --local user.name "Rodrigo Vilemen"
         git add README.md
-        git commit -m "update: readme.md"
+        git commit -m "update: readme.md" || echo "No changes to commit"
         git push
