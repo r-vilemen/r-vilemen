@@ -23,13 +23,13 @@ jobs:
         HOUR=${{ env.hour }}
 
         if [ $HOUR -ge 6 ] && [ $HOUR -lt 12 ]; then
-          echo "GREETING=Bom dia, visitante!" >> $GITHUB_ENV
+          echo "GREETING=Bom dia" >> $GITHUB_ENV
         elif [ $HOUR -ge 12 ] && [ $HOUR -lt 18 ]; then
-          echo "GREETING=Boa tarde, visitante!" >> $GITHUB_ENV
+          echo "GREETING=Boa tarde" >> $GITHUB_ENV
         elif [ $HOUR -ge 18 ] && [ $HOUR -lt 24 ]; then
-          echo "GREETING=Boa noite, visitante!" >> $GITHUB_ENV
+          echo "GREETING=Boa noite" >> $GITHUB_ENV
         else
-          echo "GREETING=Boa madrugada, visitante!" >> $GITHUB_ENV
+          echo "GREETING=Boa madrugada" >> $GITHUB_ENV
         fi
 
     - name: Update README.md
