@@ -1,9 +1,9 @@
-name: Update README with greeting (BRT)
+name: Update README with greeting
 
 on:
   schedule:
-      - cron: '0 6,12,18,23 * * *' # Executa às 06:00, 12:00, 18:00 e 23:00 todos os dias
-  workflow_dispatch:  # Permite execução manual
+    - cron: '0 6,12,18,23 * * *' # Executa às 06:00, 12:00, 18:00 e 23:00 todos os dias
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -13,36 +13,36 @@ jobs:
     - name: Check out the repository
       uses: actions/checkout@v2
 
-    - name: Get current hour in BRT (Brazil)
+    - name: Get current hour in Brasília timezone
+      run: echo "::set-output name=hour::$(TZ='America/Sao_Paulo' date +%H)"
       id: time
-      run: |
-        TZ="America/Sao_Paulo"  # Define o fuso horário de Brasília (BRT)
-        HOUR=$(TZ=$TZ date +"%H")  # Pega a hora atual no horário de Brasília
-        echo "hour_brt=$HOUR" >> $GITHUB_ENV  # Define o valor da hora no ambiente do GitHub Actions
 
-    - name: Generate greeting based on BRT time
-      id: greeting
+    - name: Generate greeting based on time
       run: |
-        HOUR=${{ env.hour_brt }}
+        HOUR=${{ steps.time.outputs.hour }}
 
         if [ $HOUR -ge 6 ] && [ $HOUR -lt 12 ]; then
-          echo "GREETING=Bom dia" >> $GITHUB_ENV
+          GREETING="Bom dia"
         elif [ $HOUR -ge 12 ] && [ $HOUR -lt 18 ]; then
-          echo "GREETING=Boa tarde" >> $GITHUB_ENV
+          GREETING="Boa tarde"
         elif [ $HOUR -ge 18 ] && [ $HOUR -lt 24 ]; then
-          echo "GREETING=Boa noite" >> $GITHUB_ENV
+          GREETING="Boa noite"
         else
-          echo "GREETING=Boa madrugada" >> $GITHUB_ENV
+          GREETING="Boa madrugada"
         fi
 
-    - name: Update README.md
+        echo "::set-output name=greeting::$GREETING"
+      id: greeting
+
+    - name: Update README
       run: |
-        sed -i "s|<!-- GREETING -->|${{ env.GREETING }}|" README.md
+        GREETING=${{ steps.greeting.outputs.greeting }}
+        sed -i "s|{{GREETING}}|$GREETING|" README.md
 
     - name: Commit changes
       run: |
         git config --local user.email "rodrigo.vilemen@hotmail.com"
         git config --local user.name "r-vilemen"
         git add README.md
-        git commit -m "update: readme.md" || echo "No changes to commit"
+        git commit -m "update: greeting"
         git push
