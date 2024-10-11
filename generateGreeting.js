@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Função para obter a saudação com base no horário de Brasília
 const getCurrentGreeting = () => {
   const options = {
     timeZone: "America/Sao_Paulo",
@@ -15,30 +16,18 @@ const getCurrentGreeting = () => {
   return "Boa madrugada";
 };
 
+// Lê o conteúdo atual do README.md
 const readmePath = "README.md";
 const readmeContent = fs.readFileSync(readmePath, "utf-8");
 
-const newGreeting = getCurrentGreeting();
+// Gera a saudação
+const greeting = getCurrentGreeting();
 
-const startMarker = "<!-- start-greeting -->";
-const endMarker = "<!-- end-greeting -->";
-const regex = new RegExp(`${startMarker}([\\s\\S]*?)${endMarker}`, "i");
-const match = readmeContent.match(regex);
+// Substitui o conteúdo entre os marcadores de saudação
+const updatedReadmeContent = readmeContent.replace(
+  /<!-- start-greeting -->.*<!-- end-greeting -->/,
+  `<!-- start-greeting --> ${greeting} <!-- end-greeting -->`
+);
 
-if (match) {
-  const currentGreeting = match[1].trim();
-
-  if (currentGreeting !== newGreeting) {
-    const updatedReadmeContent = readmeContent.replace(
-      regex,
-      `${startMarker} ${newGreeting} ${endMarker}`
-    );
-
-    fs.writeFileSync(readmePath, updatedReadmeContent);
-    console.log("Saudação atualizada no README.md");
-  } else {
-    console.log("Saudação já está correta, nenhuma atualização necessária.");
-  }
-} else {
-  console.error("Marcadores de saudação não encontrados no README.md");
-}
+// Grava o conteúdo atualizado no README.md
+fs.writeFileSync(readmePath, updatedReadmeContent);
