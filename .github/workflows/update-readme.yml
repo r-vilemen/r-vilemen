@@ -21,9 +21,7 @@ jobs:
           git config --local user.email "rodrigo.vilemen@hotmail.com"
           git config --local user.name "r-vilemen"
           git add README.md
-          if ! git diff --quiet; then
-            git commit -m "update: greeting"
-            git push
-          else
-            echo "No changes to commit"
+          git commit -m "update: greeting"
+          git push
+          echo "changes commited"
           fi
