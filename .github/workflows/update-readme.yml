@@ -2,7 +2,7 @@ name: Update README
 
 on:
   schedule:
-    - cron: "* * * * *"
+    - cron: "* * * * *" # A cada minuto para testar
   workflow_dispatch:
 
 jobs:
@@ -10,16 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Run greeting script
         run: |
           node generateGreeting.js
 
-      - name: Commit changes
+      - name: Commit changes if needed
         run: |
           git config --local user.email "rodrigo.vilemen@hotmail.com"
           git config --local user.name "r-vilemen"
           git add README.md
-          git commit -m "update: greeting"
-          git push
+          # Só faz commit se houver mudanças
+          if ! git diff --quiet; then
+            git commit -m "update: greeting"
+            git push
+          else
+            echo "No changes to commit"
+          fi
