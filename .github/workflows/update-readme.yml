@@ -24,4 +24,3 @@ jobs:
           git commit -m "update: greeting"
           git push
           echo "changes commited"
-          fi
