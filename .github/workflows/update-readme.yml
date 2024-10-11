@@ -24,3 +24,4 @@ jobs:
           git commit -m "update: greeting"
           git push
           echo "Changes committed"
+            || echo "No changes to commit"
