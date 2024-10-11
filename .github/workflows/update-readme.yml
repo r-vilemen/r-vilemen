@@ -14,22 +14,7 @@ jobs:
 
       - name: Run greeting script
         run: |
-          node generateGreeting.js > greeting.txt
-
-      - name: Update README
-        run: |
-          # Substitui o conteúdo entre os marcadores de saudação
-          sed -i.bak '/<!-- start-greeting -->/,/<!-- end-greeting -->/ {
-            /<!-- start-greeting -->/! {
-              /<!-- end-greeting -->/!d
-            }
-            /<!-- start-greeting -->/ {
-              r greeting.txt
-              d
-            }
-          }' README.md
-          # Remove o backup
-          rm README.md.bak
+          node generateGreeting.js
 
       - name: Commit changes
         run: |
