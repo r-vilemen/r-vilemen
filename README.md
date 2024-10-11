@@ -1,4 +1,4 @@
-# Olá visitante, <!-- start-greeting --> Boa teste! <!-- end-greeting -->! 👋
+# Olá visitante, <!-- start-greeting --> Bom dia <!-- end-greeting -->! 👋
 
 Meu nome é Rodrigo Vilemen, sou desenvolvedor web **front-end** e estou trabalhando para me tornar **full-stack**. Aqui você encontra alguns dos meus projetos e contribuições.
 
