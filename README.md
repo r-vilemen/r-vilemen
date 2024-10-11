@@ -8,7 +8,7 @@ Meu nome é Rodrigo Vilemen, sou desenvolvedor web **front-end** e estou trabalh
 - 💻 Experiência em **React**, **Next.js**, **TypeScript**, **JavaScript**, **HTML**, **CSS** e **Node.js**.
 - 🚀 Apaixonado por tecnologia e sempre em busca de **inovação**.
 - 🔎 Atualmente em busca de **oportunidades fixas** e **projetos freelance**.
-- 📚 Estou estudando para expandir minhas habilidades com **backend** e **inteligência artificial**.
+- 📚 Estou estudando para expandir ainda mais minhas habilidades com **frontend** e **inteligência artificial**, pretendendo também estudar **backend**.
 
 ### Projetos em Destaque:
 
