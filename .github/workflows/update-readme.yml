@@ -2,7 +2,7 @@ name: Update README
 
 on:
   schedule:
-    - cron: "* * * * *"
+    - cron: "0 9,15,21,3 * * *" # Atualiza às 6h, 12h, 18h, e 24h do horário de Brasília.
   workflow_dispatch:
 
 jobs:
@@ -20,10 +20,11 @@ jobs:
         run: |
           git config --local user.email "rodrigo.vilemen@hotmail.com"
           git config --local user.name "r-vilemen"
+          git add README.md
+          git commit -m "update: greeting"
+          git push
           if git diff --quiet; then
             echo "No changes to commit"
           else
-            git add README.md
-            git commit -m "update: greeting"
-            git push
+            echo "Changes committed"
           fi
