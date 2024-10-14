@@ -6,9 +6,9 @@ Meu nome é Rodrigo Vilemen, sou desenvolvedor web **front-end** e estou trabalh
 
 - 🎓 **MBA em Ciência de Dados e Inteligência Artificial** pela Faculdade Senac (concluído em 2024).
 - 💻 Experiência em **React**, **Next.js**, **TypeScript**, **JavaScript**, **HTML**, **CSS** e **Node.js**.
-- 🚀 Apaixonado por tecnologia e sempre em busca de **inovação**.
+- 🚀 Apaixonado por tecnologia e sempre em busca de **inovação** para resolver problemas da melhor forma.
 - 🔎 Atualmente em busca de **oportunidades fixas** e **projetos freelance**.
-- 📚 Estou estudando para expandir minhas habilidades com **backend** e **inteligência artificial**.
+- 📚 Estou estudando para expandir ainda mais minhas habilidades com **frontend** e **inteligência artificial**, pretendendo também estudar **backend**.
 
 ### Projetos em Destaque:
 
