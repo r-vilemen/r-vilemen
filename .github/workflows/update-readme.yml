@@ -9,6 +9,9 @@ jobs:
   update-readme:
     runs-on: ubuntu-latest
     steps:
+      - name: Log Current Time
+        run: date -u
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
