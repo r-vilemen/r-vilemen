@@ -2,7 +2,7 @@ name: Update README
 
 on:
   schedule:
-     - cron: "43 8,14,20,2 * * *" # Atualiza às 6h, 12h, 18h, e 24h do horário de Brasília.
+    - cron: "53 8,14,20,2 * * *" # Atualiza às 6h, 12h, 18h, e 24h do horário de Brasília.
   workflow_dispatch:
 
 jobs:
