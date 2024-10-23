@@ -1,6 +1,5 @@
-const fs = require("fs");
-
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
+import fs from "fs";
 
 const TOKEN = process.env.GH_TOKEN;
 
@@ -11,8 +10,7 @@ if (!TOKEN) {
   process.exit(1);
 }
 
-const query = `
-{
+const query = `{
   user(login: "r-vilemen") {
     pinnedItems(first: 6, types: [REPOSITORY]) {
       totalCount
