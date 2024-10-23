@@ -59,10 +59,24 @@ const updateReadmeWithPinnedProjects = async () => {
   const newContent = `${startMarker}\n${projectList}\n${endMarker}`;
 
   const regex = new RegExp(`${startMarker}([\\s\\S]*?)${endMarker}`, "i");
-  const updatedReadmeContent = readmeContent.replace(regex, newContent);
+  const match = readmeContent.match(regex);
 
-  fs.writeFileSync(readmePath, updatedReadmeContent);
-  console.log("README.md atualizado com projetos fixados.");
+  if (match) {
+    const currentProjects = match[1].trim();
+
+    if (currentProjects !== projectList.trim()) {
+      const updatedReadmeContent = readmeContent.replace(regex, newContent);
+
+      fs.writeFileSync(readmePath, updatedReadmeContent);
+      console.log("README.md atualizado com projetos fixados.");
+    } else {
+      console.log(
+        "Os projetos fixados já estão corretos, nenhuma atualização necessária."
+      );
+    }
+  } else {
+    console.error("Marcadores de projetos não encontrados no README.md");
+  }
 };
 
 updateReadmeWithPinnedProjects();
