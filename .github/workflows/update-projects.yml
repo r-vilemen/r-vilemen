@@ -1,4 +1,4 @@
-name: Update README
+name: Update Projects
 
 on:
   schedule:
@@ -9,25 +9,23 @@ jobs:
   update-readme:
     runs-on: ubuntu-latest
     steps:
-      - name: Log Current Time
-        run: date -u
-
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run greeting script
+      - name: Run pinned projects script
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          node generateGreeting.js
+          node updatePinnedProjects.js
 
       - name: Check for changes and commit
         run: |
           if git diff --quiet; then
             echo "No changes to commit"
           else
-          git config --local user.email "rodrigo.vilemen@hotmail.com"
-          git config --local user.name "r-vilemen"
-          git add README.md
-          git commit -m "update: greeting"
-          git push
-          echo "Changes committed"
+            git config --local user.email "rodrigo.vilemen@hotmail.com"
+            git config --local user.name "r-vilemen"
+            git add README.md
+            git commit -m "update: pinned projects"
+            git push
           fi
