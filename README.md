@@ -18,7 +18,6 @@ Aqui estão alguns dos meus projetos mais relevantes:
 
 - [re-aja](https://github.com/r-vilemen/re-aja) - re-aja, não fique parado e se torne um sedentário, mesmo estando no trabalho.
 - [search-repositories](https://github.com/r-vilemen/search-repositories) - Pesquisa de usuário do GitHub, juntamente com seus repositórios.
-- [customsb](https://github.com/r-vilemen/customsb) - Library for customizing the scrollbar
 - [template-next](https://github.com/r-vilemen/template-next) - Template genérico para projetos Next.js, projetado para acelerar o desenvolvimento. Com estrutura de pastas organizada e funcionalidades pré-configuradas, facilite o início de novas aplicações web.
 <!-- end-projects -->
 
