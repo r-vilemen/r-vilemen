@@ -14,8 +14,8 @@ Sou Rodrigo Vilemen, desenvolvedor web **front-end** em transição para **full-
 
 Aqui estão alguns dos meus projetos mais relevantes:
 
-  <!-- start-featured-projects -->
-  <!-- end-featured-projects -->
+  <!-- start-projects -->
+  <!-- end-projects -->
 
 ### Tecnologias Principais
 
