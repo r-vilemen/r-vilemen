@@ -12,6 +12,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: install dependencies
+        uses: npm install
+
       - name: Run pinned projects script
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
