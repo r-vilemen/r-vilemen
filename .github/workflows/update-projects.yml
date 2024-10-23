@@ -19,7 +19,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          node updateProjects.js
+          node updateProjects.mjs
 
       - name: Check for changes and commit
         run: |
