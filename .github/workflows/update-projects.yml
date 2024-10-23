@@ -2,7 +2,7 @@ name: Update Projects
 
 on:
   schedule:
-    - cron: "53 8,14,20,2 * * *" # Atualiza às 6h, 12h, 18h, e 24h do horário de Brasília.
+    - cron: "0 3 * * *" # Atualiza às 24h do horário de Brasília.
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          node updateProjects.mjs
+          node scripts/updateProjects.mjs
 
       - name: Check for changes and commit
         run: |

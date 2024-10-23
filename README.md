@@ -14,7 +14,8 @@ Sou Rodrigo Vilemen, desenvolvedor web **front-end** em transição para **full-
 
 Aqui estão alguns dos meus projetos mais relevantes:
 
-  <!-- start-projects -->
+<!-- start-projects -->
+
 - [re-aja](https://github.com/r-vilemen/re-aja) - re-aja, não fique parado e se torne um sedentário, mesmo estando no trabalho.
 - [search-repositories](https://github.com/r-vilemen/search-repositories) - Pesquisa de usuário do GitHub, juntamente com seus repositórios.
 - [customsb](https://github.com/r-vilemen/customsb) - Library for customizing the scrollbar
