@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const fetch = require("node-fetch");
 
 const TOKEN = process.env.GH_TOKEN;
