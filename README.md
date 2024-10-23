@@ -14,9 +14,8 @@ Sou Rodrigo Vilemen, desenvolvedor web **front-end** em transição para **full-
 
 Aqui estão alguns dos meus projetos mais relevantes:
 
-- **[Re-Aja](https://github.com/r-vilemen/re-aja)**: Um site voltado para a conscientização sobre o sedentarismo.
-- **[Search Repositories](https://github.com/r-vilemen/search-repositories)**: Ferramenta para busca e visualização de repositórios do GitHub.
-- **[TN - Template Next](https://github.com/r-vilemen/template-next)**: Um template Next.js para acelerar o desenvolvimento com estrutura organizada e funcionalidades pré-configuradas.
+<!-- start-featured-projects -->
+<!-- end-featured-projects -->
 
 ### Tecnologias Principais
 
