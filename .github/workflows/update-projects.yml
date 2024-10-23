@@ -16,7 +16,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          node updatePinnedProjects.js
+          node updateProjects.js
 
       - name: Check for changes and commit
         run: |
