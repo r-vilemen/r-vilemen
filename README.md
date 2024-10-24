@@ -59,6 +59,7 @@ Atualmente, estou explorando e me aprofundando em:
 [![Web3.js](https://img.shields.io/badge/Web3.js-F16822?style=for-the-badge&logo=web3.js&logoColor=white)](https://web3js.readthedocs.io/)
 [![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Pixi.js](https://img.shields.io/badge/Pixi.js-8DD6F9?style=for-the-badge&logo=pixijs&logoColor=white)](https://pixijs.com/)
 
 ---
 
