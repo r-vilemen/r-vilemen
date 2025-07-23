@@ -1,4 +1,4 @@
-# Olá, <!-- start-greeting --> Boa madrugada <!-- end-greeting -->! 👋
+# Olá, <!-- start-greeting --> Bom dia <!-- end-greeting -->! 👋
 
 Sou Rodrigo Vilemen, desenvolvedor web **front-end** em transição para **full-stack**. Aqui, você encontrará uma amostra dos meus projetos e contribuições, além de um pouco mais sobre mim.
 
